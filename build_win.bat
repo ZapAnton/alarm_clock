@@ -1,0 +1,1 @@
+gcc -std=c11 -o alarm.exe alarm.c -lwinmm
