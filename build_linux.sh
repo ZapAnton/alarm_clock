@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gcc -std=c11 -o alert alert.c
+gcc -std=c11 -o alarm alarm.c
