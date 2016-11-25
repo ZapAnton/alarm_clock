@@ -8,10 +8,10 @@
 #include <unistd.h>
 #endif
 
+void start_alarm(void);
+
 int main(int argc, char** argv) {
-	#ifdef _WIN32	
-	PlaySound(TEXT("files\\alarm.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
-	#endif	
+	start_alarm();
 	
 	for (int i = 0; i < 5; ++i) {
 		printf("WAITING %d...\n", i);
@@ -23,4 +23,10 @@ int main(int argc, char** argv) {
 	}
 	
 	return 0;
+}
+
+void start_alarm(void) {
+	#ifdef _WIN32	
+	PlaySound(TEXT("files\\alarm.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	#endif	
 }
