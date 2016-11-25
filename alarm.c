@@ -9,7 +9,9 @@
 #endif
 
 int main(int argc, char** argv) {
+	#ifdef _WIN32	
 	PlaySound(TEXT("files\\alarm.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	#endif	
 	
 	for (int i = 0; i < 5; ++i) {
 		printf("WAITING %d...\n", i);
