@@ -26,10 +26,6 @@ void wait_before_alarm(await_time* await_time);
 int main(int argc, char** argv) {
 	char input_param;
 	
-	int seconds_to_wait = 0;
-	int minutes_to_wait = 0;
-	int hours_to_wait = 0;
-	
 	await_time await_time = {.seconds = 0, .minutes = 0, .hours = 0};
 		
 	while ((input_param = getopt(argc, argv, "h:m:s:")) != -1) {
