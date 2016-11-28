@@ -10,11 +10,18 @@
 #include <unistd.h>
 #endif
 
+struct await_time {
+	int seconds;
+	int minutes;
+	int hours;
+};
+
 void start_alarm(void);
 
 void stop_alarm(void);
 
-void wait_before_alarm(int seconds_to_wait, int minutes_to_wait, int hours_to_wait);
+void wait_before_alarm(struct await_time* await_time);
+
 
 int main(int argc, char** argv) {
 	char input_param;
@@ -23,39 +30,41 @@ int main(int argc, char** argv) {
 	int minutes_to_wait = 0;
 	int hours_to_wait = 0;
 	
+	struct await_time at = {.seconds = 0, .minutes = 0, .hours = 0};
+		
 	while ((input_param = getopt(argc, argv, "h:m:s:")) != -1) {
 		switch (input_param) {
 			case 's':
-				seconds_to_wait = atoi(optarg);
+				at.seconds = atoi(optarg);
 				break;
 			case 'm':
-				minutes_to_wait = atoi(optarg);
+				at.minutes = atoi(optarg);
 				break;
 			case 'h':
-				hours_to_wait = atoi(optarg);
+				at.hours = atoi(optarg);
 				break;
 		}
 	}
 	
-	wait_before_alarm(seconds_to_wait, minutes_to_wait, hours_to_wait);
+	wait_before_alarm(&at);
 		
 	start_alarm();
 	
 	stop_alarm();
-		
+
 	return 0;
 }
 
-void wait_before_alarm(int seconds_to_wait, int minutes_to_wait, int hours_to_wait) {
+void wait_before_alarm(struct await_time *await_time) {
 	printf(
 		"Alarm is set to start in %d hours %d minutes %d seconds\n", 
-		hours_to_wait, 
-		minutes_to_wait, 
-		seconds_to_wait
+		await_time->hours, 
+		await_time->minutes, 
+		await_time->seconds
 	);
 	
 	#ifdef _WIN32
-	Sleep(( (hours_to_wait * 3600) + (minutes_to_wait * 60) + seconds_to_wait) * 1000);
+	Sleep(( (await_time->hours * 3600) + (await_time->minutes * 60) + await_time->seconds) * 1000);
 	#endif
 }
 
