@@ -20,8 +20,9 @@ void start_alarm(void);
 
 void stop_alarm(void);
 
-void wait_before_alarm(await_time* await_time);
+long await_time_to_milis(await_time* await_time);
 
+void wait_before_alarm(await_time* await_time);
 
 int main(int argc, char** argv) {
 	char input_param;
@@ -51,6 +52,10 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
+long await_time_to_milis(await_time* await_time) {
+	return ( (await_time->hours * 3600) + (await_time->minutes * 60) + await_time->seconds) * 1000; 
+}
+
 void wait_before_alarm(await_time *await_time) {
 	printf(
 		"Alarm is set to start in %d hours %d minutes %d seconds\n", 
@@ -60,7 +65,7 @@ void wait_before_alarm(await_time *await_time) {
 	);
 	
 	#ifdef _WIN32
-	Sleep(( (await_time->hours * 3600) + (await_time->minutes * 60) + await_time->seconds) * 1000);
+	Sleep(await_time_to_milis(await_time));
 	#endif
 }
 
