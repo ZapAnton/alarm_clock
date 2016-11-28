@@ -9,9 +9,7 @@ int main(int argc, char** argv) {
 	
 	wait_before_alarm(&await_time);
 		
-	start_alarm();
-	
-	stop_alarm();
+	run_alarm();
 
 	return 0;
 }

@@ -1,14 +1,23 @@
 #include "alarm_manager.h"
 
-void start_alarm(void) {
+void start_alarm(void);
+
+void stop_alarm(void);
+
+void run_alarm(void) {
+	start_alarm();
+	
+	stop_alarm();
+}
+
+void start_alarm(void) {	
 	#ifdef _WIN32	
 	PlaySound(TEXT("files\\alarm.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 	
 	for (int i = 0; i < 5; ++i) {
 		printf("WAITING %d...\n", i);
 		Sleep(1000);
-	}	
-	
+	}
 	#endif
 }
 

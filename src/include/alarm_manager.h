@@ -8,6 +8,4 @@
 #include <unistd.h>
 #endif
 
-void start_alarm(void);
-
-void stop_alarm(void);
+void run_alarm(void);
