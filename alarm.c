@@ -10,17 +10,17 @@
 #include <unistd.h>
 #endif
 
-struct await_time {
+typedef struct await_time {
 	int seconds;
 	int minutes;
 	int hours;
-};
+} await_time;
 
 void start_alarm(void);
 
 void stop_alarm(void);
 
-void wait_before_alarm(struct await_time* await_time);
+void wait_before_alarm(await_time* await_time);
 
 
 int main(int argc, char** argv) {
@@ -30,23 +30,23 @@ int main(int argc, char** argv) {
 	int minutes_to_wait = 0;
 	int hours_to_wait = 0;
 	
-	struct await_time at = {.seconds = 0, .minutes = 0, .hours = 0};
+	await_time await_time = {.seconds = 0, .minutes = 0, .hours = 0};
 		
 	while ((input_param = getopt(argc, argv, "h:m:s:")) != -1) {
 		switch (input_param) {
 			case 's':
-				at.seconds = atoi(optarg);
+				await_time.seconds = atoi(optarg);
 				break;
 			case 'm':
-				at.minutes = atoi(optarg);
+				await_time.minutes = atoi(optarg);
 				break;
 			case 'h':
-				at.hours = atoi(optarg);
+				await_time.hours = atoi(optarg);
 				break;
 		}
 	}
 	
-	wait_before_alarm(&at);
+	wait_before_alarm(&await_time);
 		
 	start_alarm();
 	
@@ -55,7 +55,7 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
-void wait_before_alarm(struct await_time *await_time) {
+void wait_before_alarm(await_time *await_time) {
 	printf(
 		"Alarm is set to start in %d hours %d minutes %d seconds\n", 
 		await_time->hours, 
