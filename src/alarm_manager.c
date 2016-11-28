@@ -15,7 +15,6 @@ void start_alarm(void) {
 	PlaySound(TEXT("files\\alarm.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 	
 	for (int i = 0; i < 5; ++i) {
-		printf("WAITING %d...\n", i);
 		Sleep(1000);
 	}
 	#endif
