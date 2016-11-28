@@ -1,9 +1,5 @@
 #include "alarm_manager.h"
 
-void start_alarm(void);
-
-void stop_alarm(void);
-
 void run_alarm(void) {
 	start_alarm();
 	

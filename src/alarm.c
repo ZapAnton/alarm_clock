@@ -8,7 +8,7 @@ int main(int argc, char** argv) {
 	get_await_time(&await_time, argc, argv);
 	
 	wait_before_alarm(&await_time);
-		
+
 	run_alarm();
 
 	return 0;

@@ -9,3 +9,7 @@
 #endif
 
 void run_alarm(void);
+
+static void start_alarm(void);
+
+static void stop_alarm(void);
